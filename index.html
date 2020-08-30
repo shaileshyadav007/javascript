@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="content">
+        <span id="timer">0</span>
+    </div>
+    <div class="inputbox">
+        <form>
+            <input id="sec"  type="number">
+            <button id='count'>Start</button>
+        </form>
+        
+    </div>
+
+    <script>
+        const count = document.getElementById("count");
+        const ans = document.getElementById('timer');
+        const input = document.getElementById("sec");
+        
+        input.addEventListener('change',(e)=>{
+            console.log(e.target.value)
+            ans.innerText = e.target.value
+        })
+        
+        count.addEventListener('click',e=>{
+            start = input.value;
+          
+            if(count.style.borderColor == "red"){
+                clearInterval();
+            }else{
+                count.style.backgroundColor="red";
+                count.style.borderColor = "red";
+                count.innerText="Stop";
+                e.preventDefault()
+                startcount = setInterval((e)=>{
+                    if(start<=0){
+                       clearInterval(startcount);
+                       count.innerText="Start"
+                        count.style.backgroundColor="white";
+                        count.style.borderColor = "black";
+                       document.body.style.backgroundColor="red";
+                       setTimeout(e=>{ document.body.style.backgroundColor="blueviolet"},3000)
+                    }
+                    ans.innerText=start;
+                    start = start-1;
+                },1000)
+            ans.innerText=start;
+            }
+           
+        })
+
+    </script>
+</body>
+</html>
